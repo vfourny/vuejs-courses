@@ -1,10 +1,10 @@
 <template>
   <div>
     <ShowList :shows="shows" @toggle-seen="toggleSeen">
-      <div>
-        <input v-model="search" placeholder="Rechercher une série..." />
-        <span>{{ seenShows.length }} vu(s) sur {{ shows.length }}</span>
-      </div>
+      <NSpace justify="space-between" align="center">
+        <NInput v-model:value="search" placeholder="Rechercher une série..." />
+        <NTag type="success">{{ seenShows.length }} vu(s) sur {{ shows.length }}</NTag>
+      </NSpace>
     </ShowList>
   </div>
 </template>

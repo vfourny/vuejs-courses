@@ -1,8 +1,15 @@
 <template>
-  <li :class="{ seen: show.seen }">
-    {{ show.title }} — {{ show.genre }} ({{ show.year }})
-    <button @click="emit('toggle-seen', show)">Basculer</button>
-  </li>
+  <NCard :title="show.title">
+    <template #header-extra>
+      <NTag :type="show.seen ? 'success' : 'default'">
+        {{ show.seen ? '✓ Vu' : 'À voir' }}
+      </NTag>
+    </template>
+    <p>{{ show.genre }} — {{ show.year }}</p>
+    <template #footer>
+      <NButton type="primary" @click="emit('toggle-seen', show)">Basculer</NButton>
+    </template>
+  </NCard>
 </template>
 
 <script setup lang="ts">
