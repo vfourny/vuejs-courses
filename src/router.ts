@@ -1,7 +1,7 @@
-import { ref } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from './pages/HomePage.vue'
 import ShowDetailPage from './pages/ShowDetailPage.vue'
+import { useAuthStore } from './store/auth'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -28,12 +28,13 @@ const router = createRouter({
   routes,
 })
 
-export const isAuthenticated = ref(false)
-
 router.beforeEach((to) => {
-  if (to.meta.requiresAuth && !isAuthenticated.value) {
+  const auth = useAuthStore()
+
+  if (to.meta.requiresAuth && !auth.isAuthenticated) {
     return ROUTES.HOME
   }
+
   return true
 })
 
