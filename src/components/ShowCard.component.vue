@@ -7,7 +7,12 @@
     </template>
     <p>{{ show.genre }} — {{ show.year }}</p>
     <template #footer>
-      <NButton type="primary" @click="emit('toggle-seen', show)">Basculer</NButton>
+      <NSpace>
+        <NButton type="primary" @click="emit('toggle-seen', show)">Basculer</NButton>
+        <RouterLink :to="`/show/${show.id}`">
+          <NButton>Détail</NButton>
+        </RouterLink>
+      </NSpace>
     </template>
   </NCard>
 </template>

@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "vue": "^3.5.0",
-    "naive-ui": "^2.40.0"
+    "naive-ui": "^2.40.0",
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.0",

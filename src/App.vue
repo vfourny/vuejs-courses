@@ -1,14 +1,10 @@
 <template>
-  <HomePage />
+  <NavMenu />
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <script setup lang="ts">
-import HomePage from '@/pages/HomePage.vue'
+import NavMenu from '@/components/NavMenu.component.vue'
 </script>
-
-<style>
-.seen {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-</style>
