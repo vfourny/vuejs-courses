@@ -17,18 +17,14 @@
     <p v-else>Film introuvable.</p>
   </div>
 </template>
-
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import type { Show } from '@/types'
-
 const route = useRoute()
-
 const show = ref<Show | null>(null)
 const isLoading = ref<boolean>(false)
 const error = ref<string | null>(null)
-
 onMounted(async () => {
   isLoading.value = true
   try {

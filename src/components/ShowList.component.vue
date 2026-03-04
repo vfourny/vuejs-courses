@@ -9,18 +9,10 @@
     </NGrid>
   </NSpace>
 </template>
-
 <script setup lang="ts">
 import type { Show } from '@/types'
 import ShowCard from './ShowCard.component.vue'
-
-interface ShowListProps {
-  shows: Show[]
-}
-
+interface ShowListProps { shows: Show[] }
 defineProps<ShowListProps>()
-
-const emit = defineEmits<{
-  'toggle-seen': [show: Show]
-}>()
+const emit = defineEmits<{ 'toggle-seen': [show: Show] }>()
 </script>
