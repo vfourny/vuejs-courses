@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue CDN - Liste de tâches</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    .done {
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Liste de tâches</h1>
+    <p>Tâches terminées : {{ doneTasks.length }} / {{ tasks.length }}</p>
+    <input v-model="newTask" placeholder="Nouvelle tâche..." @keyup.enter="addTask" />
+    <button @click="addTask">Ajouter</button>
+    <ul>
+      <li
+        v-for="task in tasks"
+        :key="task.id"
+        :class="{ done: task.done }"
+        @click="task.done = !task.done"
+      >
+        {{ task.label }}
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const { createApp, ref, computed } = Vue
+
+    createApp({
+      setup() {
+        const newTask = ref('')
+        const tasks = ref([
+          { id: 1, label: 'Apprendre Vue.js', done: false },
+          { id: 2, label: 'Créer un composant', done: false },
+          { id: 3, label: 'Déployer l\'application', done: false },
+        ])
+
+        const doneTasks = computed(() => tasks.value.filter((t) => t.done))
+
+        const addTask = () => {
+          if (!newTask.value.trim()) return
+          tasks.value.push({ id: Date.now(), label: newTask.value, done: false })
+          newTask.value = ''
+        }
+
+        return { newTask, tasks, doneTasks, addTask }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
